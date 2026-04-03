@@ -39,12 +39,25 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        scoreText.text = $"Socre: {score} " ;
         StartCoroutine(SpawnTargets());
+    }
+
+    public void UpdateScore(int scoreGet)
+    {
+        score += scoreGet;
+        scoreText.text = $"Socre: {this.score} ";
     }
 
     IEnumerator SpawnTargets()
     {
-        yield return null;
+        while (true)
+        {
+            int index = Random.Range(0, targets.Count);
+            var prefab = targets[index];
+            Instantiate(prefab);
+            yield return new WaitForSeconds(spawnRate);
+        }
     }
 }
 
