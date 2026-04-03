@@ -20,6 +20,9 @@ public class Target : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * Random.Range(minSpeed, maxSpeed),ForceMode.Impulse);
+        rb.AddTorque(10, 7, 8);
+        transform.position = new Vector3(Random.Range(-4,4),-6,0);    
     }
 
     Vector3 RandomForce()
